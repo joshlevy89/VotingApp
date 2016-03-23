@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
-    "start": "node server.js",
-    "lint": "eslint src"
+    "start": "node client-server.js",
+    "dev": "node client-server.js & nodemon ./server/index.js",
+    "lint": "eslint src",
+    "test": "./node_modules/.bin/mocha --reporter spec --watch"
   },
   "repository": {
     "type": "git",
@@ -41,7 +43,26 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "chai": "^3.5.0",
+    "cors": "^2.7.1",
+    "es6-promise": "^3.1.2",
+    "express": "^4.13.4",
+    "isomorphic-fetch": "^2.2.1",
+    "mocha": "^2.4.5",
+    "mongodb": "^2.1.7",
     "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "react-redux": "^4.4.0",
+    "react-router": "^2.0.0",
+    "react-router-redux": "^4.0.0",
+    "redux": "^3.3.1",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.0.1",
+    "request": "^2.69.0",
+    "serve-static": "^1.10.2",
+    "socket.io": "^1.4.5",
+    "socket.io-client": "^1.4.5",
+    "supertest": "^1.2.0"
   }
 }
