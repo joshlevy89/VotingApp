@@ -35,8 +35,15 @@ io.on('connection', function(socket) {
 
 })
 
-http.listen(PORT, function () {
-	console.log('Backend server listening at http://localhost:' + PORT);
-})
+app.get('/test_route', function(req, res){
+  res.status(200).json({ name: 'tobi' });
+});
 
+if (!module.parent) {
+	http.listen(PORT, function () {
+		console.log('Backend server listening at http://localhost:' + PORT);
+	})
+}
+
+module.exports = http
 
