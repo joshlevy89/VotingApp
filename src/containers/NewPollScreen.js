@@ -67,7 +67,6 @@ class VoteScreen extends Component {
             })
 
             tryAddPoll(this.state.pollName, email, options)
-            browserHistory.push('/polls')
           }
         }}>Submit
         </button>

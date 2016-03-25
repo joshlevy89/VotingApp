@@ -6,7 +6,7 @@ class Poll extends Component {
 	render() {
 		const { poll } = this.props
 		return (
-			<Link to={"/vote/"+poll.id}>
+			<Link to={"/vote/"+encodeURIComponent(poll.pollName)}>
 			<button>
 			{poll.pollName}
 			</button>

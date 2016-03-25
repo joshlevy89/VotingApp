@@ -4,12 +4,22 @@ import Vote from '../components/Vote'
 import { castVote } from '../actions'
 import { Link } from 'react-router'
 import { onOptionClick, onOptionWritein } from '../actions'
+import { getPollsList, getPollByName } from '../reducers/polls'
 
 class VoteScreen extends Component {
   render() {
-  	const { polls, email, onOptionClick, onOptionWritein} = this.props
-  	const pollId = this.props.params.pollId
-  	const poll = polls[pollId];
+  	const { pollsList, email, onOptionClick, onOptionWritein } = this.props
+  	const pollName = this.props.params.pollName
+
+    // check to see whether api has retrieved polls (if direct call to this url)
+    if (pollsList.length === 0) {
+      return (
+        <div>
+        </div>
+        )
+    }
+    const poll = getPollByName(pollsList, pollName)
+
     return (
       <div>
       <Vote poll={poll} email={email} 
@@ -22,14 +32,14 @@ class VoteScreen extends Component {
 
 function mapStateToProps(state) {
 	return {
-	polls: state.polls.byId,
+	pollsList: getPollsList(state.polls),
   email: state.login.email
 	}
 }
 
 VoteScreen = connect(
 mapStateToProps,
-{ onOptionClick, onOptionWritein },
+{ onOptionClick, onOptionWritein }
 )(VoteScreen)
 
 export default VoteScreen

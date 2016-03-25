@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { Immutable } from 'immutable'
+import { Map } from 'immutable'
 
 function vote(state,action) {
 	switch (action.type) {
@@ -83,6 +83,17 @@ export function getPollsList(state) {
 
 export function getUserPolls(state, pollIds) {
 	return pollIds.map(id => state.byId[id]).reverse()
+}
+
+export function getPollByName(pollsList,pollName) {
+	// find index with this name and get poll
+    var matches = pollsList.filter(poll=>{
+      if (poll.pollName === pollName) {
+        return true
+      }
+    })
+    var pollIndex = pollsList.indexOf(matches[0])
+  	return pollsList[pollIndex];
 }
 
 export function hasUserVoted(state,pollId, email) {
