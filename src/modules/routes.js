@@ -6,7 +6,7 @@ import NewPollScreen from '../containers/NewPollScreen';
 import LoginScreen from '../containers/LoginScreen';
 import NewUserScreen from '../containers/NewUserScreen';
 import MyPollsScreen from '../containers/MyPollsScreen';
-
+import PollLinkScreen from '../containers/PollLinkScreen';
 
 module.exports = (
 <div>
@@ -15,6 +15,7 @@ module.exports = (
 <Route path="/newuser" component={NewUserScreen}/>
 <Route path="/polls" component={PollsScreen}/>
 <Route path="/newpoll" component={NewPollScreen}/>
-<Route path="/vote/:pollId" component={VoteScreen}/>
+<Route path="/vote/:pollName" component={VoteScreen}/>
+<Route path="/poll-link/:pollName" component={PollLinkScreen}/>
 </div>
 )
