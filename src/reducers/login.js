@@ -33,6 +33,12 @@ export default function login(state={ loggedIn: false, email: null,
 			return Object.assign({}, state, {
 				pollIds: [...state.pollIds, action.poll.id]
 			})
+		case 'DELETE_POLL':
+			var index = state.pollIds.indexOf(action.pollId);
+			state.pollIds.splice(index,1);
+			return Object.assign({},state,{
+				pollIds: state.pollIds
+			})
 		default:
 			return state
 	}

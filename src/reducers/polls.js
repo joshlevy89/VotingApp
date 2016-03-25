@@ -40,9 +40,8 @@ export function byId(state=[],action) {
 				[action.poll.id]: action.poll
 			})
 		case 'DELETE_POLL':
-			return Object.assign({},state,{
-				[action.pollId]: null
-			})
+			delete state[action.pollId]
+			return state
 		case 'RECEIVE_VOTE':
 			return Object.assign({}, state, {
 				[action.pollId]: vote(state[action.pollId],action)
@@ -64,8 +63,9 @@ export function Ids(state=[],action) {
 			return [...state,action.poll.id]
 		case 'DELETE_POLL':
 			var index = state.indexOf(action.pollId);
+			state.splice(index,1);
 			if (index > -1) {
-    			return state.splice(index, 1);
+    			return state
 			}
 		default:
 			return state
