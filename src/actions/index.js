@@ -24,7 +24,9 @@ export function deletePoll(pollId) {
 
 export function onOptionClick(pollId,optionIndex,email) {
 return (dispatch, getState) => {
-    if (hasUserVoted(getState().polls, pollId, email)) {
+	// email null check fulfills user story (which is stupid b/c allows)
+	// unauthenticated user to vote unlimited times
+    if (email !== null && hasUserVoted(getState().polls, pollId, email)) {
       alert('You can only vote on a poll once!');
     }
 	else {
@@ -35,7 +37,9 @@ return (dispatch, getState) => {
 
 export function onOptionWritein(pollId,writeinVote,email) {
 return (dispatch, getState) => {
-    if (hasUserVoted(getState().polls, pollId, email)) {
+	// email null check fulfills user story (which is stupid b/c allows)
+	// unauthenticated user to vote unlimited times
+    if (email !== null && hasUserVoted(getState().polls, pollId, email)) {
       alert('You can only vote on a poll once!');
     }
 	else {
@@ -106,6 +110,17 @@ export function tryAddPoll(pollName, email, options) {
 			options: options
 		}
 		postApi('TRY_ADD_POLL',body)
+		.then(function(response) {
+		    return response.json();
+		})
+		.then(function(data) {
+			if (data.message === 'poll_with_this_name_already_exists') {
+				alert('poll with this name already exists!')
+			}
+			else if (data.message === 'poll_added_successfully') {
+				browserHistory.push('/poll-link/' + encodeURIComponent(pollName))
+			}
+		})
 	}
 }
 
