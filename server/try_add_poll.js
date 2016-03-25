@@ -6,7 +6,18 @@ app.post('/TRY_ADD_POLL', function (req, res) {
 	var email = req.body.email
 	var options = req.body.options
 
-	// find the max id in polls
+	// check if poll name already exists
+	polls.find({pollName: pollName}).toArray(function(err,docs){
+
+	// if poll with this name exists, return 
+	if (docs.length !== 0 ) {
+		res.json({
+			message: 'poll_with_this_name_already_exists'
+		})
+		return 
+	}
+
+	// if no poll with that name exists, find the max id in polls
 	var maxDoc = polls.find().sort({id: -1}).limit(1).toArray(function(err,docs){
 		if (err) throw err
 
@@ -31,10 +42,11 @@ app.post('/TRY_ADD_POLL', function (req, res) {
 		io.sockets.emit('add_poll', obj); 
 
 		res.json({
-		message: 'poll_added_successfully'
+			message: 'poll_added_successfully'
 		})
 	})
 	})
+})
 })
 }
 
