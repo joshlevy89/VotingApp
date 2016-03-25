@@ -6,13 +6,11 @@ class Poll extends Component {
 	render() {
 		const { poll } = this.props
 		return (
-			<div>
 			<Link to={"/vote/"+poll.id}>
 			<button>
 			{poll.pollName}
 			</button>
 			</Link>
-			</div>
 		)
 	}
 }

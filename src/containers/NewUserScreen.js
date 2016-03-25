@@ -5,7 +5,7 @@ import { createUser } from '../actions'
 
 class NewUserScreen extends Component {
   render() {
-    const { dispatch, createUser,a } = this.props
+    const { dispatch, createUser } = this.props
     let email
     let password
     return (

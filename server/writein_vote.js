@@ -1,8 +1,8 @@
 return module.exports = function(app, db,io) {
-app.post('/CAST_VOTE', function (req, res) {
+app.post('/WRITEIN_VOTE', function (req, res) {
 	var polls = db.collection('polls')
 	var pollId = req.body.pollId
-	var optionIndex = req.body.optionIndex
+	var writeinVote = req.body.writeinVote
 	var email = req.body.email
 
 	polls.find({id: pollId}).toArray(function(err,docs){
@@ -23,11 +23,27 @@ app.post('/CAST_VOTE', function (req, res) {
 			return
 		}
 
-		// if hasn't voted yet, inclue email in the poll
-		// this modifies options in place; would be better to assign to new object
-		var options = poll.options
-		options[optionIndex].emails.push(email)
-		var updated_options = options
+		// check whether this poll contains this option already
+		var optionMatches = poll.options.filter(function(option) {
+			if (option.optionName === writeinVote) {
+				return true
+			}
+		})
+		if (optionMatches.length !== 0) {
+			res.json({
+				message: 'writein_option_already_exists'
+			})
+			return
+		}
+
+		// if hasn't voted yet and the option does not yet exist in the poll
+		// add the option -- modifies options in place (maybe should do Object.assign)
+		var new_option = {
+			optionName: writeinVote,
+			emails: [email]
+		}
+		poll.options.push(new_option)
+		var updated_options = poll.options
 
 		// update the poll with the new voter email list
 		polls.update({
@@ -41,10 +57,10 @@ app.post('/CAST_VOTE', function (req, res) {
 
 		const obj = {
 			pollId: pollId,
-			optionIndex: optionIndex,
+			writeinVote: writeinVote,
 			email: email
 		}
-		io.sockets.emit('receive_vote', obj); 
+		io.sockets.emit('receive_writein_vote', obj); 
 
 		// send message that voting was successful
 		// res.json({

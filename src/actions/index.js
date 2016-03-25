@@ -2,12 +2,62 @@ import fetch from 'isomorphic-fetch'
 require('es6-promise').polyfill();
 import { browserHistory } from 'react-router'
 import { postApi, getApi } from '../api'
+import { hasUserVoted } from '../reducers/polls'
+
+export function tryDeletePoll(pollId,email) {
+	return (dispatch) => {
+		const body = {
+			pollId: pollId,
+			email: email
+		}
+		postApi('TRY_DELETE_POLL',body)
+	}
+}
+
+export function deletePoll(pollId) {
+	return {
+		type: 'DELETE_POLL',
+		pollId: pollId
+	}
+}
+
+
+export function onOptionClick(pollId,optionIndex,email) {
+return (dispatch, getState) => {
+    if (hasUserVoted(getState().polls, pollId, email)) {
+      alert('You can only vote on a poll once!');
+    }
+	else {
+		dispatch(castVote(pollId,optionIndex,email))
+	}
+}
+}
+
+export function onOptionWritein(pollId,writeinVote,email) {
+return (dispatch, getState) => {
+    if (hasUserVoted(getState().polls, pollId, email)) {
+      alert('You can only vote on a poll once!');
+    }
+	else {
+		dispatch(castWriteinVote(pollId,writeinVote,email))
+	}
+}
+}
 
 export function receiveVote(pollId,optionIndex,email) {
 	return {
 		type: "RECEIVE_VOTE",
 		pollId: pollId,
 		optionIndex: optionIndex,
+		email: email
+	}
+}
+
+export function receiveWriteinVote(pollId,writeinVote,email) {
+	return {
+		type: "RECEIVE_WRITEIN_VOTE",
+		pollId: pollId,
+		writeinVote: writeinVote,
 		email: email
 	}
 }
@@ -20,6 +70,17 @@ export function castVote(pollId,optionIndex,email) {
 			email: email
 		}
 		postApi('CAST_VOTE',body)
+	}
+}
+
+export function castWriteinVote(pollId,writeinVote,email) {
+	return (dispatch) => {
+		const body = {
+			pollId: pollId,
+			writeinVote: writeinVote,
+			email: email
+		}
+		postApi('WRITEIN_VOTE',body)
 	}
 }
 

@@ -1,6 +1,5 @@
 return module.exports = function(app, db) {
 app.post('/CREATE_USER', function (req, res) {
-	console.log('hello')
 	var users = db.collection('users')
 	var email = req.body.email
 	var password = req.body.password

@@ -48,6 +48,7 @@
     "cors": "^2.7.1",
     "es6-promise": "^3.1.2",
     "express": "^4.13.4",
+    "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.1",
     "mocha": "^2.4.5",
     "mongodb": "^2.1.7",

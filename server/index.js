@@ -10,8 +10,9 @@ var io = require('socket.io')(http)
 var login_attempt = require('./login_attempt')
 var try_add_poll = require('./try_add_poll')
 var create_user = require('./create_user')
-//var cast_vote = require('./cast_vote')
-
+var cast_vote = require('./cast_vote')
+var writein_vote = require('./writein_vote')
+var try_delete_poll = require('./try_delete_poll')
 
 app.use(cors()); // middleware that allows cross-platform requests
 app.use(bodyParser.json());
@@ -22,8 +23,10 @@ mongo.connect(url, function(err,db) {
 if (err) throw err
 login_attempt(app, db)
 try_add_poll(app,db,io)
+try_delete_poll(app,db,io)
 create_user(app, db)
-//cast_vote(app, db)
+cast_vote(app, db,io)
+writein_vote(app,db,io)
 
 io.on('connection', function(socket) {
 	var polls = db.collection('polls')
@@ -32,7 +35,6 @@ io.on('connection', function(socket) {
 		socket.emit('polls', docs);
 	})
 })
-
 })
 
 app.get('/test_route', function(req, res){

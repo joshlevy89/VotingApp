@@ -7,8 +7,10 @@ class PollList extends Component {
 		const { polls } = this.props
 		return (
 			<div>
-			{ polls.map(poll => 
-				<Poll key={poll.id} poll={poll}/>
+			{ polls.map(poll =>
+				<div key={poll.id}>
+				<Poll poll={poll}/>
+				</div>
 			)}
 			</div>
 		)

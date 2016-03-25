@@ -7,8 +7,7 @@ import OptionInput from '../components/OptionInput'
 class VoteScreen extends Component {
   constructor(props) {
     super(props)
-    this.numOptions = 2
-    this.state = { pollName: '', options: ['',''] }
+    this.state = { pollName: '', options: ['',''], numOptions: 2 }
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
@@ -20,6 +19,13 @@ class VoteScreen extends Component {
     })
   }
 
+  handleAddOption() {
+    this.setState({
+      options: [...this.state.options, ''],
+      numOptions: this.state.numOptions+1
+    })
+  }
+
   handlePollNameChange(val) {
     this.setState({
       pollName: val
@@ -28,7 +34,7 @@ class VoteScreen extends Component {
 
   render() {
      const { tryAddPoll, email } = this.props
-     var numOptions = this.numOptions
+     var numOptions = this.state.numOptions
      var rows = [];
       for (var i=0; i < numOptions; i++) {
       rows.push(<OptionInput key={i} optionIndex={i} handleInputChange={this.handleInputChange}/>);
@@ -40,6 +46,7 @@ class VoteScreen extends Component {
               onChange={()=>{this.handlePollNameChange(this.refs.pollName.value)}
         }/>
         {rows}
+        <button onClick = {()=>this.handleAddOption()}>Add Option</button>
         <button onClick={()=>{
             // if any of the fields are empty, alert user
             var trimmedVals = this.state.options.map(option=>{

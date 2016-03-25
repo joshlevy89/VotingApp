@@ -3,26 +3,20 @@ import { connect } from 'react-redux';
 import Vote from '../components/Vote'
 import { castVote } from '../actions'
 import { Link } from 'react-router'
+import { onOptionClick, onOptionWritein } from '../actions'
 
 class VoteScreen extends Component {
   render() {
-  	const { polls, email, onOptionClick } = this.props
+  	const { polls, email, onOptionClick, onOptionWritein} = this.props
   	const pollId = this.props.params.pollId
   	const poll = polls[pollId];
     return (
       <div>
-      <Vote poll={poll} email={email} onOptionClick={onOptionClick} />
+      <Vote poll={poll} email={email} 
+      onOptionClick={onOptionClick} onOptionWritein={onOptionWritein}/>
       <Link to={"/polls"}>Back to polls</Link>
       </div>
     );
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onOptionClick: (pollId,optionIndex,email) => {
-      dispatch(castVote(pollId,optionIndex,email))
-    }
   }
 }
 
@@ -35,7 +29,7 @@ function mapStateToProps(state) {
 
 VoteScreen = connect(
 mapStateToProps,
-mapDispatchToProps
+{ onOptionClick, onOptionWritein },
 )(VoteScreen)
 
 export default VoteScreen
