@@ -41,6 +41,7 @@ class VoteScreen extends Component {
       }     
     return (
       <div>
+        <h3>Create New Poll</h3>
         PollName: <br/>
         <input ref="pollName" 
               onChange={()=>{this.handlePollNameChange(this.refs.pollName.value)}

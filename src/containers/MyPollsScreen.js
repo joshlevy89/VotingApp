@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 import { getUserPolls } from '../reducers/polls'
 import Poll from '../components/Poll'
 import { tryDeletePoll } from '../actions'
@@ -10,6 +10,8 @@ class MyPollsScreen extends Component {
     const { polls, email, tryDeletePoll } = this.props
     return (
       <div>
+      <h3>My Polls</h3>
+      <div><Link to="/polls">Back to all polls</Link></div>
       { polls.map(poll => 
         <div key={poll.id}>
         <Poll poll={poll}/>

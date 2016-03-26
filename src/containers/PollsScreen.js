@@ -11,6 +11,8 @@ class PollsScreen extends Component {
   	const { polls, email } = this.props
     return (
       <div>
+        <h3>All Polls</h3>
+        <div><Link to="/login">Sign in</Link></div>
 		<button onClick={e=>{
 			if (email) {
 				browserHistory.push('/newpoll')

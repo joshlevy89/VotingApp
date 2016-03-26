@@ -9,6 +9,10 @@ class LoginForm extends Component {
 		const { dispatch, loginInfo, loginAttempt } = this.props
 		let email
 		let password
+		let loginMessage
+		if (loginInfo.message != null && loginInfo.message !== 'login_successful') {
+			loginMessage = 'Email and/or password incorrect'
+		}
 		return (
 			<div>
 			<form onSubmit={e=>{
@@ -27,8 +31,8 @@ class LoginForm extends Component {
 			<input ref={node=>{
 				password = node
 			}}/> <br/>
-			<button>Login</button>
-			<div>{loginInfo.message}</div>
+			<button>Sign in</button>
+			<div>{loginMessage}</div>
 			</form>
 			</div>
 		)

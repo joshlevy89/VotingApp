@@ -9,6 +9,7 @@ class LoginScreen extends Component {
 
     return (
       <div>
+      <h3>Sign in</h3>
       <LoginForm />
       <div>
       <Link to="/newuser">New user?</Link>

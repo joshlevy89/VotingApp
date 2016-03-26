@@ -22,6 +22,7 @@ class VoteScreen extends Component {
 
     return (
       <div>
+      <h3>{pollName}</h3>
       <Vote poll={poll} email={email} 
       onOptionClick={onOptionClick} onOptionWritein={onOptionWritein}/>
       <Link to={"/polls"}>Back to polls</Link>

@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 import { createUser } from '../actions'
 
 class NewUserScreen extends Component {
   render() {
-    const { dispatch, createUser } = this.props
+    const { dispatch, createUser, message } = this.props
     let email
     let password
+    let createUserMessage
+    if (message != null && message !== 'new_user_successfully_created') {
+      createUserMessage = 'Email already exists; Try another or sign in.'
+    }
     return (
       <div>
       <div>
+      <h3>Sign up</h3>
       <form onSubmit={e=>{
         e.preventDefault()
 
@@ -28,7 +33,10 @@ class NewUserScreen extends Component {
       <input ref={node=>{
         password = node
       }}/> <br/>
-      <button>Submit</button>
+      <div>{createUserMessage}</div>
+      <button>Sign up</button>
+      <div><Link to="/polls">View Polls</Link></div>
+      <div><Link to="/login">Back to Sign in</Link></div>
       </form>
       </div>
       </div>
@@ -38,6 +46,7 @@ class NewUserScreen extends Component {
 
 function mapStateToProps(state) {
   return {
+    message: state.login.message
   }
 }
 
