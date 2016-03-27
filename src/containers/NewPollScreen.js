@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router'
 import { tryAddPoll } from '../actions'
 import OptionInput from '../components/OptionInput'
+import styles from '../styles/index.css'
+
 
 class VoteScreen extends Component {
   constructor(props) {
@@ -40,8 +42,14 @@ class VoteScreen extends Component {
       rows.push(<OptionInput key={i} optionIndex={i} handleInputChange={this.handleInputChange}/>);
       }     
     return (
-      <div>
-        <h3>Create New Poll</h3>
+      <div className={styles.mainLayout}>
+        <h3 className={styles.pageTitle}>Create New Poll</h3>
+        {email===null ? 
+        <div>
+        <div>You must be signed in to create a poll!</div>
+        <div><Link to="/login">Sign in</Link></div>
+        </div>:
+        <div>
         PollName: <br/>
         <input ref="pollName" 
               onChange={()=>{this.handlePollNameChange(this.refs.pollName.value)}
@@ -71,7 +79,13 @@ class VoteScreen extends Component {
           }
         }}>Submit
         </button>
+        <button onClick = {() =>
+          browserHistory.push('/polls')
+        }
+        >Cancel</button>
       </div>
+    }
+    </div>
     )
   }
 }

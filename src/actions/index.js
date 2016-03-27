@@ -24,9 +24,10 @@ export function deletePoll(pollId) {
 
 export function onOptionClick(pollId,optionIndex,email) {
 return (dispatch, getState) => {
-	// email null check fulfills user story (which is stupid b/c allows)
-	// unauthenticated user to vote unlimited times
-    if (email !== null && hasUserVoted(getState().polls, pollId, email)) {
+	if (email === null) {
+		alert('You must be signed in to vote!')
+	}
+    else if (hasUserVoted(getState().polls, pollId, email)) {
       alert('You can only vote on a poll once!');
     }
 	else {
@@ -37,9 +38,10 @@ return (dispatch, getState) => {
 
 export function onOptionWritein(pollId,writeinVote,email) {
 return (dispatch, getState) => {
-	// email null check fulfills user story (which is stupid b/c allows)
-	// unauthenticated user to vote unlimited times
-    if (email !== null && hasUserVoted(getState().polls, pollId, email)) {
+	if (email === null) {
+	  alert('You must be signed in to vote!')
+	}
+    else if (hasUserVoted(getState().polls, pollId, email)) {
       alert('You can only vote on a poll once!');
     }
 	else {
@@ -146,6 +148,12 @@ export function loginAttempt(userData) {
 			browserHistory.push('/polls')
 			}
 		})
+	}
+}
+
+export function signOut() {
+	return {
+		type: 'SIGNOUT'
 	}
 }
 

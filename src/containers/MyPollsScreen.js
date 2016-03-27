@@ -4,14 +4,22 @@ import { browserHistory, Link } from 'react-router'
 import { getUserPolls } from '../reducers/polls'
 import Poll from '../components/Poll'
 import { tryDeletePoll } from '../actions'
+import styles from '../styles/index.css'
 
 class MyPollsScreen extends Component {
   render() {
     const { polls, email, tryDeletePoll } = this.props
     return (
+      <div className={styles.mainLayout}>
+      <h3 className={styles.pageTitle}>My Polls</h3>
+      {/* // if email null, tell user must be signed in to view polls and 
+      // give a link to the sign in page */}
+      {email===null ?
       <div>
-      <h3>My Polls</h3>
-      <div><Link to="/polls">Back to all polls</Link></div>
+      <div>You must be logged in to view your polls!</div>
+      <div><Link to="/login">Sign in</Link></div>
+      </div>
+      :null}
       { polls.map(poll => 
         <div key={poll.id}>
         <Poll poll={poll}/>

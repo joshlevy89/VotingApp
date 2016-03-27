@@ -4,8 +4,8 @@ var chartData = {
 	 datasets: [
     {
         label: "My First dataset",
-        fillColor: "rgba(220,220,220,0.5)",
-        strokeColor: "rgba(220,220,220,0.8)",
+        fillColor: "rgb(150,200,230)",
+        strokeColor: "rgb(150,200,230)",
         highlightFill: "rgba(220,220,220,0.75)",
         highlightStroke: "rgba(220,220,220,1)",
         data: data

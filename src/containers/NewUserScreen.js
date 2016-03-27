@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router'
 import { createUser } from '../actions'
+import styles from '../styles/index.css'
+import { Button } from 'react-bootstrap';
+
 
 class NewUserScreen extends Component {
+
+  handleSubmit(createUser,email,password) {
+     createUser({
+          email: email,
+          password: password
+      })
+  }
+
   render() {
-    const { dispatch, createUser, message } = this.props
+    const { createUser, message } = this.props
     let email
     let password
     let createUserMessage
@@ -13,18 +24,9 @@ class NewUserScreen extends Component {
       createUserMessage = 'Email already exists; Try another or sign in.'
     }
     return (
+      <div className={styles.mainLayout}>
+      <h3 className={styles.pageTitle}>New User Sign Up</h3>
       <div>
-      <div>
-      <h3>Sign up</h3>
-      <form onSubmit={e=>{
-        e.preventDefault()
-
-        createUser({
-            email: email.value,
-            password: password.value
-        })
-
-      }}>
       email address:<br/>
       <input ref={node=>{
         email = node
@@ -34,10 +36,10 @@ class NewUserScreen extends Component {
         password = node
       }}/> <br/>
       <div>{createUserMessage}</div>
-      <button>Sign up</button>
+      <Button onClick={()=>this.handleSubmit(createUser,email.value,password.value)}
+      bsStyle="primary">Sign up</Button>
       <div><Link to="/polls">View Polls</Link></div>
       <div><Link to="/login">Back to Sign in</Link></div>
-      </form>
       </div>
       </div>
     );

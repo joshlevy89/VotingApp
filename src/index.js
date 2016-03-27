@@ -49,7 +49,8 @@ socket.on('delete_poll', function(obj) {
 
 ReactDOM.render(
 	<Provider store={store}>
-	<Router routes={routes} history={browserHistory}>
+	<Router history={browserHistory}>
+	{ routes }
 	</Router>
 	</Provider>,
 	document.getElementById('root')

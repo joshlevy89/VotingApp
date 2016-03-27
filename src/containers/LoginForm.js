@@ -3,10 +3,19 @@ import { render } from 'react-dom'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { loginAttempt } from '../actions'
+import { Button } from 'react-bootstrap';
 
 class LoginForm extends Component {
+
+	handleSubmit(loginAttempt,email,password) {
+		loginAttempt({
+				email: email,
+				password: password
+		})
+	}
+
 	render() {
-		const { dispatch, loginInfo, loginAttempt } = this.props
+		const { loginInfo, loginAttempt } = this.props
 		let email
 		let password
 		let loginMessage
@@ -15,14 +24,6 @@ class LoginForm extends Component {
 		}
 		return (
 			<div>
-			<form onSubmit={e=>{
-				e.preventDefault()
-
-				loginAttempt({
-						email: email.value,
-						password: password.value
-				})
-			}}>
 			email:<br/>
 			<input ref={node=>{
 				email = node
@@ -31,9 +32,9 @@ class LoginForm extends Component {
 			<input ref={node=>{
 				password = node
 			}}/> <br/>
-			<button>Sign in</button>
+			<Button onClick = {()=>this.handleSubmit(loginAttempt,email.value,password.value)} 
+			bsStyle="primary">Sign in</Button>
 			<div>{loginMessage}</div>
-			</form>
 			</div>
 		)
 	}

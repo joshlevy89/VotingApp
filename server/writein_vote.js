@@ -10,10 +10,6 @@ app.post('/WRITEIN_VOTE', function (req, res) {
 		var poll = docs[0];
 		// check whether user has voted on this poll
 		// if hasn't, filter will return 0 matches
-		if (email !== null) {// this is kind of stupid but fulfills the user story
-							// ie only check if user has voted if the email is not null
-							// this allows unauthenticated users to vote (but, has the 
-							// unfortunate effect that they can vote unlimited # of times)
 		var matches = poll.options.filter(function(option) {
 			// will only return true if email found
 			if (option.emails.indexOf(email) !== -1 ) { 
@@ -26,8 +22,7 @@ app.post('/WRITEIN_VOTE', function (req, res) {
 			})
 			return
 		}
-		}
-
+		
 		// check whether this poll contains this option already
 		var optionMatches = poll.options.filter(function(option) {
 			if (option.optionName === writeinVote) {

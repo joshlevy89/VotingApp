@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+:local .mainLayout { 
+	text-align: center;
+	background-color: rgb(240,240,240);
+	margin-left: 350px;
+	margin-right: 350px;
+	font-family: Raleway;
+}
+
+:local .pageTitle {
+	padding-top: 20px;
+}
+
+
