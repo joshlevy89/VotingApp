@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import styles from '../styles/index.css'
 
 
@@ -15,9 +15,7 @@ class PollLinkScreen extends Component {
       <div>
       The Link for your poll is: 
       </div>
-      <div>
-      <Link to={partial_link}>{full_link}</Link>
-      </div>
+      <a style={{wordWrap:'break-word'}} onClick={()=>browserHistory.push(partial_link)}>{full_link}</a>
       </div>
     )
   }

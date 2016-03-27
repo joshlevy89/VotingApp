@@ -12,7 +12,7 @@ class NavBar extends Component{
     <Navbar>
     	<Navbar.Header>
 	      	<Navbar.Brand>
-	        	<a href="#">Voting App</a>
+	        	<a>Voting App</a>
 	      	</Navbar.Brand>
    		</Navbar.Header>
 	    <Nav>
@@ -20,7 +20,11 @@ class NavBar extends Component{
 	      	<NavItem onClick = {()=>browserHistory.push('/polls')} >All Polls</NavItem>
 	      	<NavItem onClick = {()=>browserHistory.push('/mypolls')} >My Polls</NavItem>
 	      	<NavItem onClick = {()=>browserHistory.push('/newpoll')} >Create New Poll</NavItem>
-          <NavItem onClick = {()=>browserHistory.push('/login')} >Sign Out</NavItem>
+          <NavItem onClick = {()=> {
+            dispatch(signOut())
+            browserHistory.push('/login')
+          }}>Sign Out
+          </NavItem>
 	    </Nav>
   	</Navbar>
   	        {this.props.children}

@@ -1,6 +1,13 @@
 export default function login(state={ loggedIn: false, email: null, 
 									  message: null, pollIds: [] },action) {
 	switch (action.type) {
+		case 'SIGNOUT': 
+			return {
+				loggedIn: false,
+				email: null,
+				message: null,
+				pollIds: []
+			}
 		case 'LOGIN_ATTEMPT':
 			if (action.message === 'login_successful') {
 				return {

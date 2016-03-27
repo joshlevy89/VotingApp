@@ -4,6 +4,7 @@ import { browserHistory, Link } from 'react-router'
 import { tryAddPoll } from '../actions'
 import OptionInput from '../components/OptionInput'
 import styles from '../styles/index.css'
+import { Button } from 'react-bootstrap';
 
 
 class VoteScreen extends Component {
@@ -50,13 +51,14 @@ class VoteScreen extends Component {
         <div><Link to="/login">Sign in</Link></div>
         </div>:
         <div>
-        PollName: <br/>
+        <h4>Poll Name:</h4>
         <input ref="pollName" 
               onChange={()=>{this.handlePollNameChange(this.refs.pollName.value)}
         }/>
         {rows}
-        <button onClick = {()=>this.handleAddOption()}>Add Option</button>
-        <button onClick={()=>{
+        <div className={styles.buttonGroup}>
+        <Button bsStyle="primary" onClick = {()=>this.handleAddOption()}>Add Option</Button>
+        <Button bsStyle="success" onClick={()=>{
             // if any of the fields are empty, alert user
             var trimmedVals = this.state.options.map(option=>{
                 return option.trim()
@@ -78,11 +80,12 @@ class VoteScreen extends Component {
             tryAddPoll(this.state.pollName, email, options)
           }
         }}>Submit
-        </button>
-        <button onClick = {() =>
+        </Button>
+        <Button bsStyle="danger" onClick = {() =>
           browserHistory.push('/polls')
         }
-        >Cancel</button>
+        >Cancel</Button>
+        </div>
       </div>
     }
     </div>

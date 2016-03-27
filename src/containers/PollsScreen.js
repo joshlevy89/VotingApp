@@ -5,7 +5,7 @@ import { Link, browserHistory} from 'react-router'
 import PollList from '../components/PollList'
 import { getPollsList } from '../reducers/polls'
 import styles from '../styles/index.css'
-import { Button } from 'react-bootstrap';
+import { Button, ButtonToolbar } from 'react-bootstrap';
 
 
 class PollsScreen extends Component {
@@ -15,17 +15,15 @@ class PollsScreen extends Component {
       <div className={styles.mainLayout}>
         <h3 className={styles.pageTitle}>All Polls</h3>
         {/* create new poll button */}
-		<Button  bsStyle="primary" onClick={e=>{
+		<Button style={{width:'150px'}} bsStyle="primary" onClick={e=>{
 			browserHistory.push('/newpoll')
 		}}>Create New Poll
 		</Button>
         {/* my polls button */}
-		<Button  bsStyle="primary" onClick={e=>{
+		<Button style={{width:'150px'}} bsStyle="primary" onClick={e=>{
 			browserHistory.push('/mypolls')
 		}}>My Polls</Button>
-		<div>
 		<PollList polls={polls}/>
-		</div>
       </div>
     );
   }

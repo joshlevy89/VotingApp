@@ -5,6 +5,7 @@ import { getUserPolls } from '../reducers/polls'
 import Poll from '../components/Poll'
 import { tryDeletePoll } from '../actions'
 import styles from '../styles/index.css'
+import { Button, ButtonToolbar } from 'react-bootstrap'
 
 class MyPollsScreen extends Component {
   render() {
@@ -19,13 +20,18 @@ class MyPollsScreen extends Component {
       <div>You must be logged in to view your polls!</div>
       <div><Link to="/login">Sign in</Link></div>
       </div>
-      :null}
+      :
+      <div>
+       <Button style={{width:'150px'}} bsStyle="primary"
+       onClick={()=>browserHistory.push("/polls")}>All Polls</Button>
       { polls.map(poll => 
         <div key={poll.id}>
         <Poll poll={poll}/>
         <button onClick={()=>tryDeletePoll(poll.id,email)}>Delete Poll</button>
         </div>
       )}
+      </div>
+      }
       </div>
     )
   }
