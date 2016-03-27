@@ -8,10 +8,16 @@ import { Button } from 'react-bootstrap';
 class LoginForm extends Component {
 
 	handleSubmit(loginAttempt,email,password) {
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if (re.test(email)===false) {
+			alert('Invalid email address')
+		}
+		else {
 		loginAttempt({
 				email: email,
 				password: password
 		})
+		}
 	}
 
 	render() {
@@ -29,7 +35,7 @@ class LoginForm extends Component {
 				email = node
 			}}/><br/>
 			password: <br/>
-			<input ref={node=>{
+			<input type="password" ref={node=>{
 				password = node
 			}}/> <br/>
 			<Button onClick = {()=>this.handleSubmit(loginAttempt,email.value,password.value)} 

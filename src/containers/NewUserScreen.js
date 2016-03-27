@@ -9,10 +9,16 @@ import { Button } from 'react-bootstrap';
 class NewUserScreen extends Component {
 
   handleSubmit(createUser,email,password) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(email)===false) {
+      alert('Invalid email address')
+    }
+    else {
      createUser({
           email: email,
           password: password
       })
+   }
   }
 
   render() {
@@ -31,8 +37,8 @@ class NewUserScreen extends Component {
       <input ref={node=>{
         email = node
       }}/><br/>
-      new password: <br/>
-      <input ref={node=>{
+      password: <br/>
+      <input type="password" ref={node=>{
         password = node
       }}/> <br/>
       <div>{createUserMessage}</div>
