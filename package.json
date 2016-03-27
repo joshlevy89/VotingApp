@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
-    "start": "node client-server.js",
+    "start": "node client-server.js & node ./server/index.js",
     "dev": "node client-server.js & nodemon ./server/index.js",
     "lint": "eslint src",
     "test": "./node_modules/.bin/mocha --reporter spec --watch"
