@@ -43,7 +43,7 @@ app.get('/test_route', function(req, res){
 
 if (!module.parent) {
 	http.listen(PORT, function () {
-		console.log('Backend server listening at http://localhost:' + PORT);
+		console.log('yup yup yup Backend server listening at http://localhost:' + PORT);
 	})
 }
 
