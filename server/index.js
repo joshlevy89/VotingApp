@@ -1,7 +1,9 @@
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var mongo = require('mongodb').MongoClient
-var url = 'mongodb://localhost:27017/VotingApp'
+
+//var url = 'mongodb://localhost:27017/VotingApp'
+var url = 'mongodb://joshlevy89:Born=1989@ds025449.mlab.com:25449/heroku_7ch8kj4k';
 var express = require('express');
 var app = express();
 var http = require('http').Server(app)
