@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
-    "start": "node client-server.js & node ./server/index.js",
-    "dev": "node client-server.js & nodemon ./server/index.js",
+    "start": "node client-dev-server.js & node ./server/index.js",
+    "dev": "node client-dev-server.js & nodemon ./server/index.js",
     "lint": "eslint src",
     "test": "./node_modules/.bin/mocha --reporter spec --watch"
   },
@@ -23,7 +23,7 @@
     "edit",
     "webpack"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "Josh Levy (using boilerplate by Dan Abramov)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gaearon/react-hot-boilerplate/issues"

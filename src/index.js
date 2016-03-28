@@ -17,7 +17,9 @@ let store = createStore(
 	applyMiddleware(...middleware)
 );
 
-const socket = io('http://localhost:2999/');
+
+var PORT = Number(process.env.PORT || 2999);
+const socket = io('http://localhost:' + PORT + '/');
 
 socket.on('polls', function (polls) {
     store.dispatch(getAllPolls(polls))
