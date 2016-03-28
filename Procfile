@@ -1,1 +1,1 @@
-web: node client-dev-server.js & node ./server/index.js
+web: webpack & node ./server/index.js

@@ -19,7 +19,6 @@ let store = createStore(
 
 
 var PORT = Number(process.env.PORT || 2999);
-console.log('wup wup listening at ' + PORT)
 const socket = io('http://localhost:' + PORT + '/');
 
 socket.on('polls', function (polls) {
