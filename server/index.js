@@ -16,7 +16,7 @@ var try_delete_poll = require('./try_delete_poll')
 
 app.use(cors()); // middleware that allows cross-platform requests
 app.use(bodyParser.json());
-const PORT = 2999;
+var port = Number(process.env.PORT || 2999);
 
 // Connect to Mongo on start
 mongo.connect(url, function(err,db) {
@@ -42,7 +42,7 @@ app.get('/test_route', function(req, res){
 });
 
 if (!module.parent) {
-	http.listen(PORT, function () {
+	http.listen(port, function () {
 		console.log('Backend server listening at http://localhost:' + PORT);
 	})
 }
