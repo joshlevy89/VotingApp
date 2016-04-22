@@ -5,7 +5,7 @@ import { castVote } from '../actions'
 import { Link } from 'react-router'
 import { onOptionClick, onOptionWritein } from '../actions'
 import { getPollsList, getPollByName } from '../reducers/polls'
-import styles from '../styles/index.css'
+require('../../styles/index.scss');
 
 class VoteScreen extends Component {
   render() {
@@ -22,8 +22,8 @@ class VoteScreen extends Component {
     const poll = getPollByName(pollsList, pollName)
 
     return (
-      <div className={styles.mainLayout}>
-      <h3 className={styles.pageTitle}>{pollName}</h3>
+      <div className="mainLayout">
+      <h3 className="pageTitle">{pollName}</h3>
       <Vote poll={poll} email={email} 
       onOptionClick={onOptionClick} onOptionWritein={onOptionWritein}/>
       <Link to={"/polls"}>Back to polls</Link>

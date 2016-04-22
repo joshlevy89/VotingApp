@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router'
 import { tryAddPoll } from '../actions'
 import OptionInput from '../components/OptionInput'
-import styles from '../styles/index.css'
 import { Button } from 'react-bootstrap';
+require('../../styles/index.scss');
 
 
 class VoteScreen extends Component {
@@ -43,8 +43,8 @@ class VoteScreen extends Component {
       rows.push(<OptionInput key={i} optionIndex={i} handleInputChange={this.handleInputChange}/>);
       }     
     return (
-      <div className={styles.mainLayout}>
-        <h3 className={styles.pageTitle}>Create New Poll</h3>
+      <div className="mainLayout">
+        <h3 className="pageTitle">Create New Poll</h3>
         {email===null ? 
         <div>
         <div>You must be signed in to create a poll!</div>
@@ -56,7 +56,7 @@ class VoteScreen extends Component {
               onChange={()=>{this.handlePollNameChange(this.refs.pollName.value)}
         }/>
         {rows}
-        <div className={styles.buttonGroup}>
+        <div className="buttonGroup">
         <Button bsStyle="primary" onClick = {()=>this.handleAddOption()}>Add Option</Button>
         <Button bsStyle="success" onClick={()=>{
             // if any of the fields are empty, alert user

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router'
 import { createUser } from '../actions'
-import styles from '../styles/index.css'
+require('../../styles/index.scss');
 import { Button } from 'react-bootstrap';
 
 
@@ -30,8 +30,8 @@ class NewUserScreen extends Component {
       createUserMessage = 'Email already exists; Try another or sign in.'
     }
     return (
-      <div className={styles.mainLayout}>
-      <h3 className={styles.pageTitle}>New User Sign Up</h3>
+      <div className="mainLayout">
+      <h3 className="pageTitle">New User Sign Up</h3>
       <div>
       email address:<br/>
       <input ref={node=>{

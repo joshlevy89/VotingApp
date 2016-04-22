@@ -1,5 +1,5 @@
 export function postApi(action,body) {
-		var url = 'http://localhost:2999/' + action
+		var url = '/' + action
 		return (fetch(url, {
 			method: 'post',
 			headers: {
@@ -11,6 +11,6 @@ export function postApi(action,body) {
 }
 
 export function getApi(action) {
-		var url = 'http://localhost:2999/' + action
+		var url = '/' + action
 		return fetch(url)
 }

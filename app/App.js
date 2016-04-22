@@ -1,14 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import io from 'socket.io-client';
-import reducers from './reducers';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { Router, browserHistory } from 'react-router'
-import routes from './modules/routes'
-import { getAllPolls, addPoll, receiveVote, receiveWriteinVote, deletePoll } from './actions'
+import routes from './src/modules/routes';
+import reducers from './src/reducers';
+import { getAllPolls, addPoll, receiveVote, receiveWriteinVote, deletePoll } from './src/actions';
 
 const middleware = [ thunk, logger() ];
 
@@ -18,7 +17,7 @@ let store = createStore(
 );
 
 
-var PORT = Number(process.env.PORT || 2999);
+var PORT = Number(process.env.PORT || 3000);
 const socket = io('http://localhost:' + PORT + '/');
 
 socket.on('polls', function (polls) {
@@ -49,11 +48,14 @@ socket.on('delete_poll', function(obj) {
     store.dispatch(deletePoll(pollId))
 });
 
-ReactDOM.render(
+export default class App extends Component {
+  render() {
+    return (
 	<Provider store={store}>
 	<Router history={browserHistory}>
-	{ routes }
+		{ routes }
 	</Router>
-	</Provider>,
-	document.getElementById('root')
-);
+	</Provider>
+    );
+  }
+}

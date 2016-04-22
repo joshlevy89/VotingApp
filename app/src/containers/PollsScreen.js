@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link, browserHistory} from 'react-router'
 import PollList from '../components/PollList'
 import { getPollsList } from '../reducers/polls'
-import styles from '../styles/index.css'
+require('../../styles/index.scss');
 import { Button, ButtonToolbar } from 'react-bootstrap';
 
 
@@ -12,8 +12,8 @@ class PollsScreen extends Component {
   render() {
   	const { polls, email } = this.props
     return (
-      <div className={styles.mainLayout}>
-        <h3 className={styles.pageTitle}>All Polls</h3>
+      <div className="mainLayout">
+        <h3 className="pageTitle">All Polls</h3>
         {/* create new poll button */}
 		<Button style={{width:'150px'}} bsStyle="primary" onClick={e=>{
 			browserHistory.push('/newpoll')

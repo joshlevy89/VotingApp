@@ -14,7 +14,6 @@ class Poll extends Component {
 		else {
 			displayName = poll.pollName
 		}
-		console.log('displayName ' + displayName)
 		return (
 			<Link to={"/vote/"+encodeURIComponent(poll.pollName)}>
 			<Button style={{width: '350px'}}>

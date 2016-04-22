@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router'
-import LoginForm from '../containers/LoginForm'
-import styles from '../styles/index.css'
+import { Link } from 'react-router';
+import LoginForm from '../containers/LoginForm';
+require('../../styles/index.scss');
 
 class LoginScreen extends Component {
   render() {
   	const { getAllPolls } = this.props
 
     return (
-      <div className={styles.mainLayout}>
-      <h3 className={styles.pageTitle}>Sign In</h3>
+      <div className="mainLayout">
+      <h3 className="pageTitle">Sign In</h3>
       <LoginForm />
       <div>
       <Link to="/newuser">New user?</Link>
