@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
-    "dev": "nodemon server.js --watch server.js & node ./webpack-server/bundle.js",
+    "dev": "nodemon --watch server.js --watch ./server server.js & node ./webpack-server/bundle.js",
     "start": "node server.js",
     "postinstall": "node deploy",
     "lint": "eslint src"

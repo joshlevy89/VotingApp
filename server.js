@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 var port = Number(process.env.PORT || 3000);
 
 if (isProduction) {
-  var url = 'mongodb://joshlevy89:Born=1989@ds025449.mlab.com:25449/heroku_7ch8kj4k';
+  var url = '  mongodb://joshlevy89:Born=1989@ds025449.mlab.com:25449/heroku_7ch8kj4k';
 }
 else {
   var url = 'mongodb://localhost:27017/VotingApp';
