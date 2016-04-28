@@ -9,7 +9,8 @@ import routes from './src/modules/routes';
 import reducers from './src/reducers';
 import { getAllPolls, addPoll, receiveVote, receiveWriteinVote, deletePoll } from './src/actions';
 
-const middleware = [ thunk, logger() ];
+var isProduction = process.env.NODE_ENV === 'production';
+const middleware = isProduction ? [ thunk ]:[thunk, logger()];
 
 let store = createStore(
 	reducers,
@@ -17,7 +18,6 @@ let store = createStore(
 );
 
 
-var PORT = Number(process.env.PORT || 3000);
 var socket = io.connect('/');
 
 socket.on('polls', function (polls) {
