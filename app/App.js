@@ -12,6 +12,7 @@ import { getAllPolls, addPoll, receiveVote, receiveWriteinVote, deletePoll } fro
 var isProduction = process.env.NODE_ENV === 'production';
 const middleware = isProduction ? [ thunk ]:[thunk, logger()];
 
+
 let store = createStore(
 	reducers,
 	applyMiddleware(...middleware)
