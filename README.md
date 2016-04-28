@@ -1,6 +1,6 @@
 This app allows users to plan their evening by seeing what bars people are going to
 and selecting bars they'd like to attend. 
-This project is hosted on heroku at: https://my-nightlife-coordinator.herokuapp.com/.  
+This project is hosted on heroku at: https://whaddya-think.herokuapp.com.  
 Only guaranteed to work in chrome. 
 
 To run locally,   
